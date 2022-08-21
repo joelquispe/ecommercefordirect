@@ -59,8 +59,14 @@ class MyApp extends StatelessWidget {
               color: Color(0x00ffB42B51),
             ),
             labelMedium: TextStyle(
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
               color: Color(0x00ff420516),
+            ),
+            caption: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0x00ffE63E6D),
             ),
           )),
       getPages: AppPages.pages,

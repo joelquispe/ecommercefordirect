@@ -1,4 +1,6 @@
+import 'package:ecommercegetxyape/app/ui/pages/pay_page/pay_page.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import '../../../controllers/car_controller.dart';
 
@@ -13,31 +15,27 @@ class CarPage extends GetView<CarController> {
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Theme.of(context).accentColor),
-                        child: IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                            ),
-                            iconSize: 25),
-                      ),
-                      Container(
-                        height: Get.height /1.7,
-                        child: Obx(() => ListView.builder(
-                            itemCount: _.carList.length,
-                            itemBuilder: (context, index) {
-                              var car = _.carList[index];
-                              return Card(
+                      IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Theme.of(context).accentColor,
+                          ),
+                          iconSize: 25),
+                      Center(
+                        child: Container(
+                          height: Get.height / 1.7,
+                          child: Obx(() => ListView.builder(
+                              itemCount: _.carList.length,
+                              itemBuilder: (context, index) {
+                                var car = _.carList[index];
+                                return Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30),
                                     ),
@@ -45,8 +43,10 @@ class CarPage extends GetView<CarController> {
                                     elevation: 9,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Theme.of(context).primaryColor),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color:
+                                              Theme.of(context).primaryColor),
                                       height: 110,
                                       child: Row(
                                         children: [
@@ -61,23 +61,33 @@ class CarPage extends GetView<CarController> {
                                                 )),
                                           ),
                                           Container(
-                                            width: Get.width /2,
+                                            width: Get.width / 2,
                                             child: Column(
-                                              
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text("${car.name}",style:Theme.of(context).textTheme.headline2),
+                                                Text("${car.name}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline2),
                                                 Text(
-                                                    "${car.description}",style: Theme.of(context).textTheme.bodyText1,),
-                                                Text("Precio : ${car.price}",style:Theme.of(context).textTheme.headline1),
+                                                  "${car.description}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1,
+                                                ),
+                                                Text("Precio : ${car.price}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1),
                                               ],
                                             ),
                                           ),
                                         ],
                                       ),
                                     ));
-                            })),
+                              })),
+                        ),
                       ),
                       Container(
                         child: Column(
@@ -89,7 +99,7 @@ class CarPage extends GetView<CarController> {
                               color: Theme.of(context).accentColor,
                               elevation: 9,
                               child: Container(
-                                height: 40,
+                                height: 45,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Row(
@@ -98,8 +108,9 @@ class CarPage extends GetView<CarController> {
                                   children: [
                                     Text(
                                       "Subtotal: ",
-                                      style:
-                                          Theme.of(context).textTheme.labelMedium,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
                                     ),
                                     Text("${_.subtotal.value}",
                                         style: Theme.of(context)
@@ -116,7 +127,7 @@ class CarPage extends GetView<CarController> {
                               color: Theme.of(context).accentColor,
                               elevation: 9,
                               child: Container(
-                                height: 40,
+                                height: 45,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Row(
@@ -125,8 +136,9 @@ class CarPage extends GetView<CarController> {
                                   children: [
                                     Text(
                                       "Delivery: ",
-                                      style:
-                                          Theme.of(context).textTheme.labelMedium,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
                                     ),
                                     Text("${_.delivery}",
                                         style: Theme.of(context)
@@ -143,7 +155,7 @@ class CarPage extends GetView<CarController> {
                               color: Theme.of(context).accentColor,
                               elevation: 9,
                               child: Container(
-                                height: 40,
+                                height: 45,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Row(
@@ -152,8 +164,9 @@ class CarPage extends GetView<CarController> {
                                   children: [
                                     Text(
                                       "Total: ",
-                                      style:
-                                          Theme.of(context).textTheme.labelMedium,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
                                     ),
                                     Text("${_.total.value}",
                                         style: Theme.of(context)
@@ -163,8 +176,87 @@ class CarPage extends GetView<CarController> {
                                 ),
                               ),
                             ),
+                            Container(
+                              child: Wrap(
+                                
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Obx(() => Radio(
+                                      value: "bcp",
+                                      groupValue: _.methodpay.value,
+                                      onChanged: (value) {
+                                        _.methodpay.value = value!.toString();
+                                        
+                                      })),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      "assets/img/pays/bcp.png",
+                                      height: 30,
+                                    ),
+                                  ),
+                                  Obx(() => Radio(
+                                      value: "interbank",
+                                      groupValue: _.methodpay.value,
+                                      onChanged: (value) {
+                                        _.methodpay.value = value!.toString();
+                                       
+                                      })),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      "assets/img/pays/bcp.png",
+                                      height: 30,
+                                    ),
+                                  ),
+                                  Obx(() => Radio(
+                                      value: "plin",
+                                      groupValue: _.methodpay.value,
+                                      onChanged: (value) {
+                                        _.methodpay.value = value!.toString();
+                                        
+                                      })),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      "assets/img/pays/plin.png",
+                                      height: 30,
+                                    ),
+                                  ),
+                                  Obx(() => Radio(
+                                      value: "yape",
+                                      groupValue: _.methodpay.value,
+                                      onChanged: (value) {
+                                        _.methodpay.value = value!.toString();
+                                       
+                                      })),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      "assets/img/pays/yape.png",
+                                      height: 30,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (_.carList.isNotEmpty) {
+                                  Get.to(PayPage(),
+                                      transition: Transition.size,
+                                      arguments: [_.carList,_.methodpay]);
+                                } else {
+                                  Fluttertoast.showToast(
+                                      fontSize: 20,
+                                      textColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      backgroundColor:
+                                          Theme.of(context).accentColor,
+                                      gravity: ToastGravity.CENTER,
+                                      msg: "Carrito de compras vacío");
+                                }
+                              },
                               child: Text(
                                 "Proceder a comprar",
                                 style: Theme.of(context).textTheme.labelMedium,

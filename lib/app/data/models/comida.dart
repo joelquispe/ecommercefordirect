@@ -2,7 +2,7 @@ class Comida {
   String? id;
   String? name;
   String? description;
-  String? price;
+  double? price;
   String? category;
   String? img;
 

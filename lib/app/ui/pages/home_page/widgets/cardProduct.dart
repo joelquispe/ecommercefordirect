@@ -1,7 +1,9 @@
 import 'package:ecommercegetxyape/app/controllers/car_controller.dart';
 import 'package:ecommercegetxyape/app/controllers/home_controller.dart';
+import 'package:ecommercegetxyape/app/ui/pages/detailsproduct_page/detailsproduct_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 Widget cardProduct(
     HomeController _, BuildContext context, CarController carController) {
@@ -20,9 +22,15 @@ Widget cardProduct(
               child: Container(
                 child: Column(
                   children: [
-                    Image.asset(
-                      "${_.comidass[index].img}",
-                      height: 100,
+                    GestureDetector(
+                      onLongPress: () {
+                        Get.to(DetailsproductPage(),
+                            transition: Transition.zoom,arguments: _.comidass[index]);
+                      },
+                      child: Image.asset(
+                        "${_.comidass[index].img}",
+                        height: 100,
+                      ),
                     ),
                     Text(
                       "${_.comidass[index].name}",
@@ -44,7 +52,7 @@ Widget cardProduct(
                         carController.calculateTotal();
                         Fluttertoast.showToast(
                             msg: "Agregado al carrito",
-                            gravity: ToastGravity.TOP_RIGHT,
+                            gravity: ToastGravity.TOP,
                             timeInSecForIosWeb: 1,
                             backgroundColor: Theme.of(context).accentColor,
                             textColor:
