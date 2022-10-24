@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:ecommercegetxyape/app/data/models/comida.dart';
+import 'package:ecommercegetxyape/app/data/models/Product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,10 +39,10 @@ class PayController extends GetxController {
             "Dirección: ${controllerAddress.text} \n DNI: ${controllerDni.text} \n";
     mensaje += "Productos : \n";
     args[0].forEach((element) {
-      mensaje += "${element.name} :  S/${element.price.toString()} \n";
+      mensaje += "${element.product!.name} :  S/${element.product!.price.toString()} \n";
     });
     mensaje +=
-        "Total : S/${args[0].map((e) => e.price).reduce((a, b) => a! + b! + 10)}";
+        "Total : S/${args[0].map((e) => e.product!.price).reduce((a, b) => a! + b! + 10)}";
 
     print(mensaje);
   }

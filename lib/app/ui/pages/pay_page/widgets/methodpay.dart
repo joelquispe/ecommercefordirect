@@ -1,6 +1,8 @@
+import 'package:ecommercegetxyape/app/ui/global_widgets/wsnackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-Widget methodpayW(BuildContext context,Icon icon,String texto) {
+Widget methodpayW(BuildContext context, Icon icon, String texto) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
     decoration: BoxDecoration(
@@ -14,6 +16,13 @@ Widget methodpayW(BuildContext context,Icon icon,String texto) {
           texto,
           style: Theme.of(context).textTheme.labelMedium,
         ),
+        IconButton(
+            onPressed: () {
+              Clipboard.setData(new ClipboardData(text: texto));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(WSnackbar(Text("Copiado")));
+            },
+            icon: Icon(Icons.copy))
       ],
     ),
   );

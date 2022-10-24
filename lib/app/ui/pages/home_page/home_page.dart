@@ -1,5 +1,6 @@
 import 'package:ecommercegetxyape/app/controllers/car_controller.dart';
 import 'package:ecommercegetxyape/app/data/data.dart';
+import 'package:ecommercegetxyape/app/data/models/product_order.dart';
 import 'package:ecommercegetxyape/app/ui/pages/home_page/widgets/cardProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                        color: Theme.of(context).primaryColor,
+                       
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           children: [
@@ -62,20 +63,15 @@ class HomePage extends StatelessWidget {
                                 child: Text("Sandwich",
                                     style:
                                         Theme.of(context).textTheme.headline2)),
-                            cardProduct(_, context, carController)
+                            cardProduct(_, context, carController,ProductOrder(cantidad: 1))
                           ],
                         ),
                       ),
-                      Container(
-                        child: Image.asset(
-                          "assets/gif/food.gif",
-                          height: 150,
-                        ),
-                      ),
+                      
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                        color: Theme.of(context).primaryColor,
+                        
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           children: [
@@ -90,14 +86,14 @@ class HomePage extends StatelessWidget {
                                 child: Text("Anticuchos",
                                     style:
                                         Theme.of(context).textTheme.headline2)),
-                           cardProduct(_, context, carController)
+                           cardProduct(_, context, carController,ProductOrder(cantidad: 1))
                           ],
                         ),
                       ),
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                        color: Theme.of(context).primaryColor,
+                        
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
                           children: [
@@ -112,7 +108,7 @@ class HomePage extends StatelessWidget {
                                 child: Text("Dulces",
                                     style:
                                         Theme.of(context).textTheme.headline2)),
-                            cardProduct(_, context, carController)
+                            cardProduct(_, context, carController,ProductOrder(cantidad: 1))
                           ],
                         ),
                       )

@@ -1,5 +1,8 @@
+import 'package:ecommercegetxyape/app/bindings/splash_binding.dart';
+import 'package:ecommercegetxyape/app/data/const/colors.dart';
 import 'package:ecommercegetxyape/app/routes/app_pages.dart';
 import 'package:ecommercegetxyape/app/routes/app_routes.dart';
+import 'package:ecommercegetxyape/app/ui/pages/splash_page/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,42 +34,44 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.INITIAL,
+      initialBinding: SplashBinding(),
+      initialRoute: Routes.SPLASH,
+     
       theme: ThemeData(
-          primarySwatch: buildMaterialColor(Color(0x00ffE63E6D)),
-          primaryColor: Color(0x00ff7D1935),
-          scaffoldBackgroundColor: Color(0x00ff420516),
-          backgroundColor: Color(0x00ffB42B51),
-          accentColor: Color(0x00ffE63E6D),
+          primarySwatch: buildMaterialColor(secondary),
+          primaryColor: third,
+          scaffoldBackgroundColor: primary,
+          backgroundColor: fourth,
+          accentColor: secondary,
           textTheme: TextTheme(
             button: TextStyle(
               fontSize: 17.0,
               fontWeight: FontWeight.bold,
-              color: Color(0x00ff420516),
+              color: primary,
             ),
             headline1: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
-              color: Color(0x00ffE63E6D),
+              color: secondary,
             ),
             headline2: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
-              color: Color(0x00ffE63E6D),
+              color: secondary,
             ),
             bodyText1: TextStyle(
               fontSize: 14.0,
-              color: Color(0x00ffB42B51),
+              color: fourth,
             ),
             labelMedium: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
-              color: Color(0x00ff420516),
+              color: primary,
             ),
             caption: TextStyle(
               fontSize: 17.0,
               fontWeight: FontWeight.bold,
-              color: Color(0x00ffE63E6D),
+              color: secondary,
             ),
           )),
       getPages: AppPages.pages,

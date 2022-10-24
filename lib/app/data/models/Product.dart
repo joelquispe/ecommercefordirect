@@ -1,4 +1,4 @@
-class Comida {
+class Product {
   String? id;
   String? name;
   String? description;
@@ -6,7 +6,7 @@ class Comida {
   String? category;
   String? img;
 
-  Comida(
+  Product(
       {this.id,
       this.name,
       this.description,
@@ -14,7 +14,7 @@ class Comida {
       this.category,
       this.img});
 
-  Comida.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];

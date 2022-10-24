@@ -35,62 +35,81 @@ class CarPage extends GetView<CarController> {
                               itemCount: _.carList.length,
                               itemBuilder: (context, index) {
                                 var car = _.carList[index];
-                                return Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    color: Theme.of(context).primaryColor,
-                                    elevation: 9,
-                                    child: Container(
-                                      decoration: BoxDecoration(
+                                return Dismissible(
+                                  background: Container(
+                                    color: Colors.green,
+                                    child: Icon(Icons.check),
+                                  ),
+                                  secondaryBackground: Container(
+                                    color: Colors.red,
+                                    child: Icon(Icons.delete),
+                                  ),
+                                  onDismissed: (direction) {
+                                    if (direction ==
+                                        DismissDirection.endToStart) {
+                                      _.carList.removeAt(index);
+                                      _.calculateSubtotal();
+                                      _.calculateTotal();
+                                    } else {}
+                                  },
+                                  key: ValueKey("dismissCar"),
+                                  child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      color: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      elevation: 9,
+                                      child: Container(
+                                        decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                      height: 110,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                child: Image.asset(
-                                                  "assets/img/foods/comidai.jpg",
-                                                  height: 120,
-                                                )),
-                                          ),
-                                          Container(
-                                            width: Get.width / 2,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text("${car.name}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                                Text(
-                                                  "${car.description}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1,
-                                                ),
-                                                Text("Precio : ${car.price}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline1),
-                                              ],
+                                        ),
+                                        height: 110,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: Image.asset(
+                                                    "assets/img/foods/comidai.jpg",
+                                                    height: 120,
+                                                  )),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ));
+                                            Container(
+                                              width: Get.width / 2,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text("${car.product!.name}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline2),
+                                                  Text(
+                                                      "Cantidad : ${car.cantidad}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1),
+                                                  Text(
+                                                      "Precio : S/${car.product!.price}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline1),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                );
                               })),
                         ),
                       ),
                       Container(
-                        child: Column(
+                        child: Obx(()=> Column(
                           children: [
                             Card(
                               shape: RoundedRectangleBorder(
@@ -112,7 +131,7 @@ class CarPage extends GetView<CarController> {
                                           .textTheme
                                           .labelMedium,
                                     ),
-                                    Text("${_.subtotal.value}",
+                                    Text("S/${_.subtotal.value}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium),
@@ -140,7 +159,7 @@ class CarPage extends GetView<CarController> {
                                           .textTheme
                                           .labelMedium,
                                     ),
-                                    Text("${_.delivery}",
+                                    Text("S/"+"${_.delivery}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium),
@@ -178,7 +197,6 @@ class CarPage extends GetView<CarController> {
                             ),
                             Container(
                               child: Wrap(
-                                
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   Obx(() => Radio(
@@ -186,7 +204,6 @@ class CarPage extends GetView<CarController> {
                                       groupValue: _.methodpay.value,
                                       onChanged: (value) {
                                         _.methodpay.value = value!.toString();
-                                        
                                       })),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -200,12 +217,11 @@ class CarPage extends GetView<CarController> {
                                       groupValue: _.methodpay.value,
                                       onChanged: (value) {
                                         _.methodpay.value = value!.toString();
-                                       
                                       })),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
                                     child: Image.asset(
-                                      "assets/img/pays/bcp.png",
+                                      "assets/img/pays/interbank.png",
                                       height: 30,
                                     ),
                                   ),
@@ -214,7 +230,6 @@ class CarPage extends GetView<CarController> {
                                       groupValue: _.methodpay.value,
                                       onChanged: (value) {
                                         _.methodpay.value = value!.toString();
-                                        
                                       })),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -228,7 +243,6 @@ class CarPage extends GetView<CarController> {
                                       groupValue: _.methodpay.value,
                                       onChanged: (value) {
                                         _.methodpay.value = value!.toString();
-                                       
                                       })),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -245,7 +259,7 @@ class CarPage extends GetView<CarController> {
                                 if (_.carList.isNotEmpty) {
                                   Get.to(PayPage(),
                                       transition: Transition.size,
-                                      arguments: [_.carList,_.methodpay]);
+                                      arguments: [_.carList, _.methodpay]);
                                 } else {
                                   Fluttertoast.showToast(
                                       fontSize: 20,
@@ -263,7 +277,7 @@ class CarPage extends GetView<CarController> {
                               ),
                             )
                           ],
-                        ),
+                        ),)
                       )
                     ],
                   ),
