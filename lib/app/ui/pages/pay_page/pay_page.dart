@@ -39,10 +39,14 @@ class PayPage extends GetView<PayController> {
                               "assets/img/pays/${_.args[1]}.png",
                               height: 100,
                             )),
-                            SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        _.isCard == false? methodpayW(context, Icon(Icons.phone_android), "902-309-486") :methodpayW(context, Icon(Icons.payment), "12312312312123"),
+                        _.isCard == false
+                            ? methodpayW(context, Icon(Icons.phone_android),
+                                "902-309-486")
+                            : methodpayW(
+                                context, Icon(Icons.payment), "12312312312123"),
                         SizedBox(
                           height: 20,
                         ),
@@ -77,7 +81,7 @@ class PayPage extends GetView<PayController> {
                           ),
                           onChanged: (value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
@@ -93,6 +97,9 @@ class PayPage extends GetView<PayController> {
                             ),
                           ),
                           onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         TextFormField(
                           style: Theme.of(context).textTheme.bodySmall,

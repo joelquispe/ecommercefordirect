@@ -74,8 +74,8 @@ class CarPage extends GetView<CarController> {
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                   child: Image.asset(
-                                                    "assets/img/foods/comidai.jpg",
-                                                    height: 120,
+                                                    "${car.product!.img}",fit: BoxFit.cover,
+                                                    height: 120,width: Get.width/3.5,
                                                   )),
                                             ),
                                             Container(

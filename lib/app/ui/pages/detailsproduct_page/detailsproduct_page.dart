@@ -33,7 +33,9 @@ class DetailsproductPage extends GetView<DetailsproductController> {
                         icon: Icon(Icons.arrow_back_ios_new),
                         color: Theme.of(context).accentColor,
                       ),
-                      Image.asset("assets/img/foods/comidai.jpg", height: 250),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(_.comida.img!, height: 250,fit: BoxFit.cover,width: Get.width,)),
                       SizedBox(
                         height: 10,
                       ),
@@ -46,7 +48,7 @@ class DetailsproductPage extends GetView<DetailsproductController> {
                       ),
                       Text(
                         "${_.comida.description}",
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                       Spacer(),
                       Obx(
@@ -102,7 +104,8 @@ class DetailsproductPage extends GetView<DetailsproductController> {
                             label: Text("Agregar",
                                 style:
                                     Theme.of(context).textTheme.labelMedium)),
-                      )
+                      ),
+                      SizedBox(height: 20,)
                     ],
                   ),
                 ),

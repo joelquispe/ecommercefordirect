@@ -24,15 +24,18 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        height: Get.height / 3,
+                        height: Get.height / 2.5,
                         child: CarouselSlider(
                             items: comidas
-                                .map((e) => Container(
-                                      child: Image.asset("${e.img}"),
-                                    ))
+                                .map((e) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                        child: Image.asset("${e.img}",fit: BoxFit.cover,height: Get.height /2.5,width: Get.width,),
+                                      ),
+                                ))
                                 .toList(),
                             options: CarouselOptions(
-                              viewportFraction: 0.7,
+                              
                               initialPage: 0,
                               enableInfiniteScroll: true,
                               reverse: false,
@@ -51,6 +54,7 @@ class HomePage extends StatelessWidget {
                        
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: Column(
+                          
                           children: [
                             Container(
                                 padding: EdgeInsets.symmetric(
@@ -60,10 +64,13 @@ class HomePage extends StatelessWidget {
                                       Theme.of(context).scaffoldBackgroundColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Text("Sandwich",
-                                    style:
-                                        Theme.of(context).textTheme.headline2)),
-                            cardProduct(_, context, carController,ProductOrder(cantidad: 1))
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text("Sandwich",
+                                      style:
+                                          Theme.of(context).textTheme.headline2),
+                                )),
+                            cardProduct(_, context, carController,ProductOrder(cantidad: 1),"sandwich")
                           ],
                         ),
                       ),
@@ -83,10 +90,13 @@ class HomePage extends StatelessWidget {
                                       Theme.of(context).scaffoldBackgroundColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Text("Anticuchos",
-                                    style:
-                                        Theme.of(context).textTheme.headline2)),
-                           cardProduct(_, context, carController,ProductOrder(cantidad: 1))
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text("Anticuchos",
+                                      style:
+                                          Theme.of(context).textTheme.headline2),
+                                )),
+                           cardProduct(_, context, carController,ProductOrder(cantidad: 1),"anticucho")
                           ],
                         ),
                       ),
@@ -105,10 +115,13 @@ class HomePage extends StatelessWidget {
                                       Theme.of(context).scaffoldBackgroundColor,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Text("Dulces",
-                                    style:
-                                        Theme.of(context).textTheme.headline2)),
-                            cardProduct(_, context, carController,ProductOrder(cantidad: 1))
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text("Dulces",
+                                      style:
+                                          Theme.of(context).textTheme.headline2),
+                                )),
+                            cardProduct(_, context, carController,ProductOrder(cantidad: 1),"postre")
                           ],
                         ),
                       )
